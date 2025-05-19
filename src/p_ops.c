@@ -6,16 +6,16 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:46:02 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/16 17:12:00 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:47:35 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //We use a pointer temp, bc thats the node that we will be changing, despite of that we work with double pointer to change the heads
-static void	px(t_list **stack_dest, t_list **stack_src)
+static void	px(t_stack **stack_dest, t_stack **stack_src)
 {
-	t_list	*tmp;
+	t_stack	*tmp;
 	
 	if (!stack_src || !*stack_src)
 		return ;
@@ -29,13 +29,13 @@ static void	px(t_list **stack_dest, t_list **stack_src)
 	*stack_dest = tmp;
 }
 
-void	pa(t_list **stack_a, t_list **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	px(stack_a, stack_b);
 	write(1, "pa\n", 3);
 }
 
-void	pb(t_list **stack_b, t_list **stack_a)
+void	pb(t_stack **stack_b, t_stack **stack_a)
 {
 	px(stack_b, stack_a);
 	write(1, "pb\n", 3);

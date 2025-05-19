@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:44:03 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/16 17:45:34 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:00:45 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@ int main(int ac, char *av[])
 {
     int 	*numbers;
     int 	count;
-	t_list	*stack_a; 
-	t_list	*stack_b;
+	t_stack	*stack_a; 
+	t_stack	*stack_b;
 
 	numbers = NULL;
 	count = 0;
     if (!security_measure(ac, av, &numbers, &count))
-        return (1);
+		return (1);
 	stack_b = NULL;
 	stack_a = stack_init(numbers, count);
-	
-    free(numbers);
+	free(numbers);
+	index_stack(&stack_a);
+	sort_sorter(&stack_a, &stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
     return (0);
 }
 
@@ -68,4 +71,16 @@ int	duplicate_checker(int *numbers, int count)
 		i++;
 	}
 	return (1);
+}
+
+void    free_stack(t_stack *stack)
+{
+    t_stack *tmp;
+
+    while (stack)
+    {
+        tmp = stack->next;
+        free(stack);
+        stack = tmp;
+    }
 }
