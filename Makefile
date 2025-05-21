@@ -6,14 +6,14 @@
 #    By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/15 12:56:45 by skuhlcke          #+#    #+#              #
-#    Updated: 2025/05/19 19:11:59 by skuhlcke         ###   ########.fr        #
+#    Updated: 2025/05/20 16:57:52 by skuhlcke         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ilibft
+CFLAGS = -Wall -Wextra -Werror -Ilibft -g
 
 SRC = src/ft_strol.c \
       src/p_ops.c \
@@ -25,7 +25,9 @@ SRC = src/ft_strol.c \
       src/rr_ops.c \
       src/s_ops.c \
       src/stack_creator.c \
-	  src/stack_utils.c
+	  src/stack_utils.c \
+	  src/filter_the_stack.c \
+	  src/filter_utils.c
 
 OBJ = $(SRC:.c=.o)
 

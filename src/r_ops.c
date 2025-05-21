@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:45:59 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 19:01:53 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:57:20 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 {
 	rx(stack_a);
 	rx(stack_b);
-	write(1, "rr\n", 3);
 }
 
 void	ra(t_stack **stack)
 {
 	rx(stack);
-	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack **stack)
 {
 	rx(stack);
-	write(1, "rb\n", 3);
 }

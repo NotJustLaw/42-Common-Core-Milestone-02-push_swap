@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 14:46:02 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 18:47:35 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:57:37 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ static void	px(t_stack **stack_dest, t_stack **stack_src)
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	px(stack_a, stack_b);
-	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **stack_b, t_stack **stack_a)
 {
 	px(stack_b, stack_a);
-	write(1, "pb\n", 3);
 }

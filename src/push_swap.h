@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:44:01 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 19:59:18 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:21:25 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../printf/ft_printf.h" 
 
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 
@@ -29,6 +30,11 @@ typedef struct s_stack
 	int				index;
 }	t_stack;
 
+typedef struct s_op
+{
+	char *name;
+	struct s_op *next;
+} t_op;
 //Main functions
 int		security_measure(int ac, char *av[], int **numbers, int *count);
 int		splitter_and_error_handler(char **av, int **numbers, int *count);
@@ -62,20 +68,31 @@ void	rrb(t_stack **stack);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 //Sort Sorter
-void	sort_sorter(t_stack **a, t_stack **b);
+void	sort_sorter(t_stack **a, t_stack **b, t_op **log);
 
 //Simple Algorithms
-void	sort_two(t_stack **a);
-void	sort_three(t_stack **a);
-void	sort_four(t_stack **a, t_stack **b);
-void	sort_five(t_stack **a, t_stack **b);
+void	sort_two(t_stack **a, t_op **log);
+void	sort_three(t_stack **a, t_op **log);
+void	sort_four(t_stack **a, t_stack **b, t_op **log);
+void	sort_five(t_stack **a, t_stack **b, t_op **log);
 
 //Hard Algorithm
-void	radix_sort(t_stack **a, t_stack **b);
+void	radix_sort(t_stack **a, t_stack **b, t_op **log);
 
 //Stack utils
 int		stack_size(t_stack *lst);
 t_stack	*stack_last(t_stack *lst);
 void	stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*stack_new(int nb);
+
+//Filter Related
+int		ops_cancel(char *a, char *b);
+void	add_op(t_op **log, char *op);
+t_op	*last_op(t_op *log);
+void	remove_last_op(t_op **log);
+void	print_ops(t_op *log);
+void	free_op_log(t_op *log);
+
+void	exec_op(t_stack **a, t_stack **b, t_op **log, char *op);
+void	exec_rotate_ops(t_stack **a, t_stack **b, char *op);
 #endif

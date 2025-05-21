@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 12:28:26 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 19:07:06 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:02:03 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	*stack_to_array(t_stack *a, int size)
 	i = 0;
 	while (a)
 	{
-		arr[i++] = a->content;
+		arr[i++] = a->index;
 		a = a->next;
 	}
 	return (arr);
@@ -79,9 +79,9 @@ void	index_stack(t_stack **a)
 		i = 0;
 		while (i < size)
 		{
-			if (tmp->content == arr[i])
+			if (tmp->index == arr[i])
 			{
-				tmp->content = i;
+				tmp->index = i;
 				break ;
 			}
 			i++;

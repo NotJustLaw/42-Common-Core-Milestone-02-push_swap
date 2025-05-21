@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:57:44 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 19:10:27 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:48:20 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_stack	*stack_new(int nb)
 	part = malloc(sizeof(t_stack));
 	if (!part)
 		return (NULL);
-	part->nb = nb;
+	part->content = nb;
 	part->next = NULL;
 	part->prev = NULL;
 	return (part);

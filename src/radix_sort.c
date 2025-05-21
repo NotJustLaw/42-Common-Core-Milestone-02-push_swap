@@ -6,28 +6,27 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:38:56 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 20:13:01 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:44:21 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	sort_sorter(t_stack **a, t_stack **b)
+void	sort_sorter(t_stack **a, t_stack **b, t_op **log)
 {
 	int	size;
 
 	size = stack_size(*a);
 	if (size == 2)
-		sort_two(a);
+		sort_two(a, log);
 	else if (size == 3)
-		sort_three(a), printf("GOt into sort_four");
+		sort_three(a, log);
 	else if (size == 4)
-		sort_four(a, b);
+		sort_four(a, b, log);
 	else if (size == 5)
-		sort_five(a, b);
+		sort_five(a, b, log);
 	else
-		radix_sort(a, b);
+		radix_sort(a, b, log);
 }
 
 static int	get_max_bits(t_stack *a)
@@ -36,11 +35,11 @@ static int	get_max_bits(t_stack *a)
 	int	max_bits; 
 	
 	max_bits = 0;
-	max = a->content;
+	max = a->index;
 	while (a)
 	{
-		if (a->content > max)
-			max = a->content;
+		if (a->index > max)
+			max = a->index;
 		a = a->next;
 	}
 	while ((max >> max_bits) != 0)
@@ -48,7 +47,7 @@ static int	get_max_bits(t_stack *a)
 	return (max_bits);
 }
 
-void	radix_sort(t_stack **a, t_stack **b)
+void	radix_sort(t_stack **a, t_stack **b, t_op **log)
 {
 	int	size;
 	int	max_bits;
@@ -65,14 +64,14 @@ void	radix_sort(t_stack **a, t_stack **b)
 		while (j < size)
 		{
 			tmp = *a;
-			if (((tmp->content >> i) & 1) == 0)
-				pb(b, a);
+			if (((tmp->index >> i) & 1) == 0)
+				exec_op(a, b, log, "pb");
 			else
-				ra(a);
+				exec_op(a, NULL, log, "ra");
 			j++;
 		}
 		while (*b)
-			pa(a, b);
+			exec_op(a, b, log, "pa");
 		i++;
 	}
 }

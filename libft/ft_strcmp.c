@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_ops.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/16 14:24:08 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 13:57:55 by skuhlcke         ###   ########.fr       */
+/*   Created: 2025/05/20 13:55:26 by skuhlcke          #+#    #+#             */
+/*   Updated: 2025/05/20 13:55:28 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
- 
-static void	sx(t_stack **stack)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	tmp;
+	int	i;
 
-	if (!stack || !(*stack)->next)
-		return ;
-	tmp = (*stack)->content;
-	(*stack)->content = (*stack)->next->content;
-	(*stack)->next->content = tmp;
-}
-
-void	ss(t_stack **stack_a, t_stack **stack_b)
-{
-	sx(stack_a);
-	sx(stack_b);
-}
-
-void	sa(t_stack **stack)
-{
-	sx(stack);
-}
-
-void	sb(t_stack **stack)
-{
-	sx(stack);
+	i = 0;
+	while ((s1[i] || s2[i]) && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

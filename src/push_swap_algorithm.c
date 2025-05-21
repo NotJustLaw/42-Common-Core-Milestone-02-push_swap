@@ -6,18 +6,18 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 18:26:04 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/19 20:04:03 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:09:32 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_two(t_stack **a)
+void	sort_two(t_stack **a, t_op **log)
 {
-	sa(a);
+	exec_op(a, NULL, log, "sa");
 }
 
-void	sort_three(t_stack **a)
+void	sort_three(t_stack **a, t_op **log)
 {
 	int	n1;
 	int	n2;
@@ -27,23 +27,23 @@ void	sort_three(t_stack **a)
 	n2 = (*a)->next->content;
 	n3 = (*a)->next->next->content;
 	if (n1 < n2 && n2 < n3)
-	return ;
+		return ;
 	if (n1 > n2 && n2 < n3 && n1 < n3)
-		sa(a);
+		exec_op(a, NULL, log, "sa");
 	else if (n1 > n2 && n2 > n3)
 	{
-		sa(a);
-		rra(a);
+		exec_op(a, NULL, log, "sa");
+		exec_op(a, NULL, log, "rra");
 	}
 	else if (n1 > n2 && n2 < n3 && n1 > n3)
-		ra(a);
+		exec_op(a, NULL, log, "ra");
 	else if (n1 < n2 && n2 > n3 && n1 < n3)
 	{
-		sa(a);
-		ra(a);
+		exec_op(a, NULL, log, "sa");
+		exec_op(a, NULL, log, "ra");
 	}
 	else if (n1 < n2 && n2 > n3 && n1 > n3)
-		rra(a);
+		exec_op(a, NULL, log, "rra");
 }
 
 static int	min_pos(t_stack *a)
@@ -70,43 +70,46 @@ static int	min_pos(t_stack *a)
 	return (pos);
 }
 
-void	sort_four(t_stack **a, t_stack **b)
+void	sort_four(t_stack **a, t_stack **b, t_op **log)
 {
 	int pos;
-	int	size;
-	
-	pos = min_pos(*a);
+	int size;
+
 	size = stack_size(*a);
-	while (pos != 0)
-	{
-		if (pos <= size / 2)
-			ra(a);
-		else
-			rra(a);
-		pos = min_pos(*a);
-	}
-	pb(b, a);
-	sort_three(a);
-	pa(a, b);
+	pos = min_pos(*a);
+	if (pos <= size / 2)
+		while (pos-- > 0)
+			exec_op(a, NULL, log, "ra");
+	else
+		while (pos++ < size)
+			exec_op(a, NULL, log, "rra");
+	exec_op(a, b, log, "pb");
+	sort_three(a, log);
+	exec_op(a, b, log, "pa");
 }
 
-void	sort_five(t_stack **a, t_stack **b)
+void	sort_five(t_stack **a, t_stack **b, t_op **log)
 {
 	int	pos;
-	
+	int	size;
+
 	while (stack_size(*a) > 3)
 	{
+		size = stack_size(*a);
 		pos = min_pos(*a);
-		if (pos == 0)
-			pb(b, a);
-		else if (pos <= stack_size(*a))
-			ra(a);
+		if (pos <= size / 2)
+		{
+			while (pos-- > 0)
+				exec_op(a, NULL, log, "ra");
+		}
 		else
-			rra(a);
+		{
+			while (pos++ < size)
+				exec_op(a, NULL, log, "rra");
+		}
+		exec_op(a, b, log, "pb");
 	}
-	sort_three(a);
-	if (*b && (*b)->next && (*b)->content > (*b)->next->content)
-		sb(b);
+	sort_three(a, log);
 	while (*b)
-		pa(a, b);	
+		exec_op(a, b, log, "pa");
 }
