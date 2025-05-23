@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:25:35 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 13:46:47 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:49:41 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,26 @@
 
 void	add_op(t_op **log, char *op)
 {
-	t_op *new = malloc(sizeof(t_op));
-	new->name = ft_strdup(op);
-	new->next = NULL;
+	t_op	*new;
+	t_op	*tmp;
 
+	new = malloc(sizeof(t_op));
+	if (!new)
+	{
+		exit(1);
+	}
+	new->name = ft_strdup(op);
+	if (!new->name)
+	{
+		free(new);
+		exit(1);
+	}
+	new->next = NULL;
 	if (!*log)
 		*log = new;
 	else
 	{
-		t_op *tmp = *log;
+		tmp = *log;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
@@ -31,35 +42,17 @@ void	add_op(t_op **log, char *op)
 
 t_op	*last_op(t_op *log)
 {
-	t_op *tmp = log;
-	if (!tmp) return NULL;
+	t_op	*tmp;
+
+	if (!log)
+		return (NULL);
+	tmp = log;
 	while (tmp->next && tmp->next->next)
 		tmp = tmp->next;
-	return tmp->next ? tmp : NULL;
-}
-
-void	remove_last_op(t_op **log)
-{
-	t_op *tmp = *log;
-	t_op *prev = NULL;
-
-	if (!tmp)
-		return ;
-	if (!tmp->next)
-	{
-		free(tmp->name);
-		free(tmp);
-		*log = NULL;
-		return ;
-	}
-	while (tmp->next)
-	{
-		prev = tmp;
-		tmp = tmp->next;
-	}
-	prev->next = NULL;
-	free(tmp->name);
-	free(tmp);
+	if (tmp->next)
+		return (tmp->next);
+	else
+		return (NULL);
 }
 
 void	print_ops(t_op *log)
@@ -74,12 +67,13 @@ void	print_ops(t_op *log)
 
 void	free_op_log(t_op *log)
 {
-	t_op *tmp;
+	t_op	*tmp;
 
 	while (log)
 	{
 		tmp = log->next;
-		free(log->name);
+		if (log->name)
+			free(log->name);
 		free(log);
 		log = tmp;
 	}

@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:38:56 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 13:44:21 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:44:24 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	sort_sorter(t_stack **a, t_stack **b, t_op **log)
 static int	get_max_bits(t_stack *a)
 {
 	int	max;
-	int	max_bits; 
-	
+	int	max_bits;
+
 	max_bits = 0;
 	max = a->index;
 	while (a)
@@ -49,10 +49,10 @@ static int	get_max_bits(t_stack *a)
 
 void	radix_sort(t_stack **a, t_stack **b, t_op **log)
 {
-	int	size;
-	int	max_bits;
-	int	i;
-	int	j;
+	int		max_bits;
+	int		i;
+	int		j;
+	int		size;
 	t_stack	*tmp;
 
 	size = stack_size(*a);

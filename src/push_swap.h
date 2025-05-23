@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:44:01 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 14:21:25 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:45:36 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ typedef struct s_stack
 
 typedef struct s_op
 {
-	char *name;
-	struct s_op *next;
-} t_op;
+	char		*name;
+	struct s_op	*next;
+}	t_op;
+
 //Main functions
 int		security_measure(int ac, char *av[], int **numbers, int *count);
 int		splitter_and_error_handler(char **av, int **numbers, int *count);
@@ -45,11 +46,12 @@ int		duplicate_checker(int *numbers, int count);
 //Helpers
 long	ft_strol(const char *s);
 int		ft_is_space(char c);
-void    free_stack(t_stack *stack);
+void	free_stack(t_stack *stack);
 
 //Stack Related
 t_stack	*stack_init(int	*numbers, int count);
 void	index_stack(t_stack **a);
+int		is_sorted(t_stack *a);
 
 //swap-ops
 void	sa(t_stack **stack);
@@ -86,10 +88,8 @@ void	stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*stack_new(int nb);
 
 //Filter Related
-int		ops_cancel(char *a, char *b);
 void	add_op(t_op **log, char *op);
 t_op	*last_op(t_op *log);
-void	remove_last_op(t_op **log);
 void	print_ops(t_op *log);
 void	free_op_log(t_op *log);
 

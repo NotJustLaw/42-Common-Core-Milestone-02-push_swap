@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 18:26:04 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 14:09:32 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:44:02 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	min_pos(t_stack *a)
 	int		pos;
 	int		i;
 	t_stack	*tmp;
-	
+
 	min = a->content;
 	pos = 0;
 	i = 0;
@@ -72,8 +72,8 @@ static int	min_pos(t_stack *a)
 
 void	sort_four(t_stack **a, t_stack **b, t_op **log)
 {
-	int pos;
-	int size;
+	int	pos;
+	int	size;
 
 	size = stack_size(*a);
 	pos = min_pos(*a);

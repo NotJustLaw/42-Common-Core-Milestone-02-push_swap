@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:44:05 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/16 17:45:05 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 12:36:18 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int	splitter_and_error_handler(char **av, int **numbers, int *count)
 		return (0);
 	*numbers = malloc(sizeof(int) * (*count));
 	if (!*numbers)
-		return (0);
+		return (numbers = NULL, 0);
 	idx = 0;
 	if (!fill_numbers(av, *numbers, &idx))
 	{
-		free(*numbers);
+		if (*numbers)
+		{
+			free(*numbers);
+			*numbers = NULL;
+		}
 		return (0);
 	}
 	return (1);
@@ -36,7 +40,8 @@ int	splitter_and_error_handler(char **av, int **numbers, int *count)
 
 int	error_handler(const char *s)
 {
-	int i;
+	int		i;
+	long	val;
 
 	i = 0;
 	if (!s || !*s)
@@ -51,7 +56,7 @@ int	error_handler(const char *s)
 			return (1);
 		i++;
 	}
-	long val = ft_strol(s);
+	val = ft_strol(s);
 	if (val < INT_MIN || val > INT_MAX)
 		return (1);
 	return (0);
@@ -59,9 +64,11 @@ int	error_handler(const char *s)
 
 void	free_split(char **arr)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!arr)
-		return;
+		return ;
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
@@ -69,10 +76,10 @@ void	free_split(char **arr)
 
 static int	count_numbers(char **av)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		j;
+	int		count;
 	char	**arr;
-	int	j;
 
 	count = 0;
 	i = 0;
@@ -91,8 +98,8 @@ static int	count_numbers(char **av)
 
 int	fill_numbers(char **av, int *numbers, int *idx)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**arr;
 	long	val;
 
@@ -117,4 +124,3 @@ int	fill_numbers(char **av, int *numbers, int *idx)
 	}
 	return (1);
 }
-

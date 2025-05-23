@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 18:57:44 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/20 12:48:20 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/22 15:22:18 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	stackadd_back(t_stack **lst, t_stack *new)
 	}
 	last = stack_last(*lst);
 	last->next = new;
+	new->prev = last;
 }
 
 t_stack	*stack_new(int nb)
@@ -64,6 +65,7 @@ t_stack	*stack_new(int nb)
 	if (!part)
 		return (NULL);
 	part->content = nb;
+	part->index = 0;
 	part->next = NULL;
 	part->prev = NULL;
 	return (part);
