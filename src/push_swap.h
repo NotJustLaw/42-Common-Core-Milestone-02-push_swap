@@ -6,7 +6,7 @@
 /*   By: skuhlcke <skuhlcke@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 16:44:01 by skuhlcke          #+#    #+#             */
-/*   Updated: 2025/05/23 12:45:36 by skuhlcke         ###   ########.fr       */
+/*   Updated: 2025/05/23 13:08:33 by skuhlcke         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include "../printf/ft_printf.h" 
 
 # include <unistd.h>
 # include <stdio.h>

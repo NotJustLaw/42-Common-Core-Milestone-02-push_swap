@@ -1,6 +1,6 @@
 #/bin/bash
 
-for i in $(seq 1 100); do
+for i in $(seq 0 100); do
 	RANDOM_SEQ_100=$(seq -1 100 | shuf -n 100)
 done
 	make re; valgrind --show-leak-kinds=all ./push_swap $RANDOM_SEQ_100 > test_output.txt;
